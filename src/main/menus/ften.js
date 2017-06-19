@@ -1,8 +1,8 @@
-export default function markyMenu ({app}) {
+export default function ftenMenu ({app}) {
   return {
-    label: 'Marky',
+    label: 'FTen',
     submenu: [{
-      label: 'About Marky',
+      label: 'About FTen',
       role: 'about'
     }, {
       type: 'separator'
@@ -13,7 +13,7 @@ export default function markyMenu ({app}) {
     }, {
       type: 'separator'
     }, {
-      label: 'Hide Marky',
+      label: 'Hide FTen',
       accelerator: 'Command+H',
       role: 'hide'
     }, {

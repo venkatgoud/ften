@@ -8,5 +8,6 @@ export const EXTENSIONS = [
   'mdtxt',
   'mdtext',
   'text',
-  'txt'
+  'txt',
+  'fountain'
 ]

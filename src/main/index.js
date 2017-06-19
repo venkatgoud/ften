@@ -1,6 +1,7 @@
 import { app, Menu, dialog, shell } from 'electron'
 import configureMenu from './configureMenu'
 import createWindow from './createWindow'
+import createIndianPreview from './createPreview'
 import window from './windowManager'
 import autoUpdater from './autoUpdater'
 
@@ -15,12 +16,12 @@ function onReady () {
       const confirm = dialog.showMessageBox({
         type: 'info',
         title: 'Update available',
-        message: `A new version (${newVersion}) of Marky is available.`,
+        message: `A new version (${newVersion}) of FTen is available.`,
         detail: 'Do you want to download it now?',
         buttons: ['Yes', 'No']
       })
       if (confirm === 0) {
-        shell.openExternal('https://github.com/vesparny/marky/releases')
+        shell.openExternal('https://github.com/venkatgoud/ften/releases')
       }
     })
   })
@@ -34,7 +35,7 @@ app.on('ready', onReady)
 app.on('open-file', (e, path) => {
   e.preventDefault()
   if (isReady) {
-    createWindow(path)
+    createWindow(path)     
   } else {
     pathToOpen = path
   }

@@ -2,12 +2,10 @@ import wordcount from 'wordcount'
 import * as types from '../constants/actionTypes'
 
 const initialState = {
-  markdown: '',
-  html: '',
+  markdown: '',   
   isScrolling: true,
   filePath: null,
-  fileName: null,
-  wordCount: 0
+  fileName: null   
 }
 
 export default function markdown (state = initialState, action) {
@@ -21,9 +19,7 @@ export default function markdown (state = initialState, action) {
       }
     case types.MARKDOWN_CHANGED:
       return Object.assign({}, state, {
-        markdown: action.payload.markdown,
-        html: action.payload.html,
-        wordCount: wordcount(action.payload.markdown || '')
+        markdown: action.payload.markdown
       })
     case types.TOGGLE_SCROLLING:
       return Object.assign({}, state, {

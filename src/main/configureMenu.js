@@ -1,13 +1,14 @@
 import edit from './menus/edit'
 import file from './menus/file'
 import help from './menus/help'
-import marky from './menus/marky'
+import ften from './menus/ften'
 import view from './menus/view'
+import preview from './menus/preview'
 import windowMenu from './menus/windowMenu'
 
 export default function configureMenu ({app}) {
   let template = process.platform === 'darwin'
-    ? [marky({app})]
+    ? [ften({app})]
     : []
   return [
     ...template,
@@ -15,6 +16,7 @@ export default function configureMenu ({app}) {
     edit,
     windowMenu,
     view,
+    preview,
     help
   ]
 }

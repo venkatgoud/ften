@@ -1,16 +1,26 @@
-import { dialog, ipcMain, BrowserWindow } from 'electron'
+import { dialog, ipcMain, ipcRenderer, BrowserWindow } from 'electron'
 import fs from 'fs-plus'
 import { extname, basename } from 'path'
 import { EXTENSIONS } from '../constants/globals'
 import createWindow from './createWindow'
+import {createIndianPreview, createHollywoodPreview} from './createPreview'
+ 
 
-ipcMain.on('MARKY::save-file', (e, {data, filePath}) => {
+ipcMain.on('FTEN::preview-hollywood', (e) => {
+  createHollywoodPreview()
+})
+
+ipcMain.on('FTEN::preview-indian', (e) => {   
+   createIndianPreview()
+})
+
+ipcMain.on('FTEN::save-file', (e, {data, filePath}) => {
   fs.writeFile(filePath, data, 'utf-8', function (err, file) {
     if (err) return
   })
 })
 
-ipcMain.on('MARKY::dropped-file', (e, {filePath}) => {
+ipcMain.on('FTEN::dropped-file', (e, {filePath}) => {
   openFile(filePath, BrowserWindow.fromWebContents(e.sender))
 })
 
@@ -21,7 +31,7 @@ function openFile (filePath, browserWindow) {
       const confirm = dialog.showMessageBox(browserWindow, {
         type: 'error',
         title: 'Unsupported File',
-        message: 'You are trying to load a large file, MARKY will be unresponsive',
+        message: 'You are trying to load a large file, FTEN will be unresponsive',
         detail: 'Do you still want to load this file?',
         buttons: ['Proceed', 'Cancel']
       })
@@ -32,7 +42,7 @@ function openFile (filePath, browserWindow) {
       createWindow(filePath)
     })
     return
-  }
+  }     
   dialog.showMessageBox(browserWindow, {
     type: 'error',
     title: 'Unsupported File',
@@ -42,13 +52,13 @@ function openFile (filePath, browserWindow) {
   })
 }
 
-ipcMain.on('MARKY::save-file-as', (e, {data}) => {
-  const filePath = dialog.showSaveDialog()
+ipcMain.on('FTEN::save-file-as', (e, {data}) => {   
+  const filePath = dialog.showSaveDialog()   
   if (filePath) {
     fs.writeFile(filePath, data, 'utf-8', function (err) {
       if (err) return
-      BrowserWindow.fromWebContents(e.sender).setTitle('Marky -- ' + filePath)
-      e.sender.send('MARKY::file-loaded', {
+      BrowserWindow.fromWebContents(e.sender).setTitle('FTen -- ' + filePath)
+      e.sender.send('FTEN::file-loaded', {
         fileName: basename(filePath),
         filePath,
         file: data
@@ -66,14 +76,22 @@ export function open ({browserWindow}) {
   })
 }
 
-export function save ({browserWindow}) {
-  browserWindow.webContents.send('MARKY::ask-file-save')
+export function save ({browserWindow}) {   
+  browserWindow.webContents.send('FTEN::ask-file-save')
 }
 
 export function saveAs ({browserWindow}) {
-  browserWindow.webContents.send('MARKY::ask-file-save-as')
+  browserWindow.webContents.send('FTEN::ask-file-save-as')
 }
 
 export function newFile () {
   createWindow()
+}
+
+export function previewIndian({browserWindow}) {   
+  browserWindow.webContents.send('FTEN::preview-indian')  
+}
+
+export function previewHollywood({browserWindow}) {
+  browserWindow.webContents.send('FTEN::preview-hollywood')  
 }

@@ -6,34 +6,22 @@ export default {
   submenu: [{
     label: 'Learn More',
     click: function () {
-      shell.openExternal('https://github.com/vesparny/marky#marky')
+      shell.openExternal('https://github.com/venkatgoud/ften')
     }
   }, {
     label: 'Report Issue',
     click: function () {
-      shell.openExternal('https://github.com/vesparny/marky/issues')
+      shell.openExternal('https://github.com/venkatgoud/ften/issues')
     }
   }, {
     label: 'Source Code on GitHub',
     click: function () {
-      shell.openExternal('https://github.com/vesparny/marky')
+      shell.openExternal('https://github.com/venkatgoud/ften')
     }
   }, {
-    label: 'Changelog',
+    label: 'Fountain syntax',
     click: function () {
-      shell.openExternal('https://github.com/vesparny/marky/blob/master/CHANGELOG.md')
+      shell.openExternal('https://fountain.io/syntax')
     }
-  }, {
-    label: 'Markdown syntax',
-    click: function () {
-      shell.openExternal('https://daringfireball.net/projects/markdown/syntax')
-    }
-  }, {
-    type: 'separator'
-  }, {
-    label: 'Follow @vesparny on Twitter',
-    click: function () {
-      shell.openExternal('https://twitter.com/vesparny')
-    }
-  }]
+  } ]
 }

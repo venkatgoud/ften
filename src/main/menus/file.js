@@ -28,19 +28,5 @@ export default {
     click: (menuItem, browserWindow) => {
       actions.saveAs({browserWindow})
     }
-  }, {
-    type: 'separator'
-  }, {
-    label: 'Export As HTML',
-    click: function () {}
-  }, {
-    label: 'Export As PDF',
-    click: function () {}
-  }, {
-    type: 'separator'
-  }, {
-    label: 'Print',
-    accelerator: 'CmdOrCtrl+P',
-    click: function () {}
   }]
 }

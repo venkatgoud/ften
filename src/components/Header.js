@@ -2,22 +2,14 @@ import React from 'react'
 import { Toolbar, Space, Heading, NavItem } from 'rebass'
 import Icon from 'react-geomicons'
 import * as colors from '../constants/colors'
+import {createIndianPreview, createHollywoodPreview} from '../main/createPreview'
 
-const Header = ({wordCount, fileName}) => (
+const Header = ({fileName}) => (
   <div>
     <Toolbar style={{
       backgroundColor: colors.GRAY
     }}>
-      <Heading level={3}>MARKY</Heading>
-      <Space auto />
-      <NavItem onClick={() => window.alert('More options will be available soon!')}>
-        <Icon
-          height='1.5em'
-          name='cog'
-          width='1.5em'
-        />
-      </NavItem>
-      <Space />
+      <Heading level={3}>FTEN</Heading>       
     </Toolbar>
     <Toolbar style={{
       backgroundColor: colors.LIGHT_GRAY,
@@ -25,11 +17,7 @@ const Header = ({wordCount, fileName}) => (
       minHeight: '40px',
       color: colors.GRAY
     }}>
-      <span>{fileName || 'Untitled Document'}</span>
-      <Space auto />
-      <span style={{color: colors.VERY_LIGHT_GRAY}}>words:</span>
-      <Space />
-      <span>{wordCount}</span>
+      <span>{fileName || 'Untitled Screenplay'}</span>       
       <Space />
     </Toolbar>
   </div>

@@ -2,36 +2,44 @@ import * as actions from './actions'
 import { ipcRenderer } from 'electron'
 
 export default function configureIpcRenderer (store) {
-  ipcRenderer.on('MARKY::file-loaded', (e, {file, fileName, filePath}) => {
+  ipcRenderer.on('FTEN::file-loaded', (e, {file, fileName, filePath}) => {
     store.dispatch(actions.convertMarkdown(file))
     store.dispatch(actions.fileLoaded({fileName, filePath}))
   })
 
-  ipcRenderer.on('MARKY::ask-file-save', (e) => {
+  ipcRenderer.on('FTEN::ask-file-save', (e) => {     
     const data = store.getState().markdown.markdown
-    const filePath = store.getState().markdown.filePath
-    if (!filePath) {
-      ipcRenderer.send('MARKY::save-file-as', {
+    const filePath = store.getState().markdown.filePath     
+    if (!filePath) {       
+      ipcRenderer.send('FTEN::save-file-as', {
         data
       })
       return
     }
-    ipcRenderer.send('MARKY::save-file', {
+    ipcRenderer.send('FTEN::save-file', {
       data,
       filePath
     })
   })
 
-  ipcRenderer.on('MARKY::ask-file-save-as', (e) => {
+  ipcRenderer.on('FTEN::ask-file-save-as', (e) => {
     const data = store.getState().markdown.markdown
-    ipcRenderer.send('MARKY::save-file-as', {
+    ipcRenderer.send('FTEN::save-file-as', {
       data
     })
   })
 
+  ipcRenderer.on('FTEN::preview-indian', (e) => {     
+    ipcRenderer.send('FTEN::preview-indian')
+  })
+
+  ipcRenderer.on('FTEN::preview-hollywood', (e) => {     
+    ipcRenderer.send('FTEN::preview-hollywood')      
+  })
+   
   window.document.addEventListener('drop', (e) => {
     e.preventDefault()
-    ipcRenderer.send('MARKY::dropped-file', {
+    ipcRenderer.send('FTEN::dropped-file', {
       filePath: e.dataTransfer.files[0].path
     })
   })

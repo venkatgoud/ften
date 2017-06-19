@@ -4,7 +4,7 @@ import { version as currentVersion } from '../../package.json'
 
 export default function autoUpdater (callback) {
   superagent
-  .get('https://raw.githubusercontent.com/vesparny/marky/master/package.json')
+  .get('https://raw.githubusercontent.com/venkatgoud/ften/master/package.json')
   .end((err, res) => {
     if (err || !res.ok) {
       callback(err)

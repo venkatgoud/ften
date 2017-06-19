@@ -3,9 +3,7 @@ import ReactDom from 'react-dom'
 import {connect} from 'react-redux'
 import {debounce} from 'lodash'
 import {convertMarkdown, toggleScrolling} from '../actions'
-import Editor from '../components/Editor'
-import Preview from '../components/Preview'
-import SplitPane from 'react-split-pane'
+import Editor from '../components/Editor' 
 import Panel from '../components/Panel'
 import Header from '../components/Header'
 
@@ -18,10 +16,8 @@ const App = React.createClass({
   },
 
   componentDidMount () {
-    const editor = ReactDom.findDOMNode(this.refs.editor)
-    const preview = ReactDom.findDOMNode(this.refs.preview)
-    this.onEditorScroll = this.sync(editor, preview, 'editor')
-    this.onPreviewScroll = this.sync(preview, editor, 'preview')
+    const editor = ReactDom.findDOMNode(this.refs.editor)     
+    this.onEditorScroll = this.sync(editor, 'editor')     
 
     if (this.props.isScrolling) {
       this.bindEvents()
@@ -37,11 +33,9 @@ const App = React.createClass({
     }
   },
 
-  sync (target, other, scrollingElName) {
+  sync (target, scrollingElName) {
     return () => {
-      const notScrollingElHandler = scrollingElName === 'preview'
-        ? this.onEditorScroll
-        : this.onPreviewScroll
+      const notScrollingElHandler =  this.onEditorScroll         
       const percentage = (target.scrollTop * 100) / (target.scrollHeight - target.offsetHeight)
       other.removeEventListener('scroll', notScrollingElHandler)
       other.scrollTop = percentage * (other.scrollHeight - other.offsetHeight) / 100
@@ -50,13 +44,11 @@ const App = React.createClass({
   },
 
   bindEvents () {
-    ReactDom.findDOMNode(this.refs.editor).addEventListener('scroll', this.onEditorScroll)
-    ReactDom.findDOMNode(this.refs.preview).addEventListener('scroll', this.onPreviewScroll)
+    ReactDom.findDOMNode(this.refs.editor).addEventListener('scroll', this.onEditorScroll)     
   },
 
   unbindEvents () {
-    ReactDom.findDOMNode(this.refs.editor).removeEventListener('scroll', this.onEditorScroll)
-    ReactDom.findDOMNode(this.refs.preview).removeEventListener('scroll', this.onPreviewScroll)
+    ReactDom.findDOMNode(this.refs.editor).removeEventListener('scroll', this.onEditorScroll)     
   },
 
   onChange (value) {
@@ -73,18 +65,13 @@ const App = React.createClass({
   },
 
   render () {
-    const {wordCount, markdown, html, fileName} = this.props
+    const {markdown, html, fileName} = this.props
     return (
       <section>
-        <Header wordCount={wordCount} fileName={fileName} />
-        <SplitPane split='vertical' defaultSize='50%' primary='second'>
-          <Panel ref='editor'>
+        <Header fileName={fileName} />
+        <Panel ref='editor'>
             <Editor value={markdown} onChange={this.onChange} />
-          </Panel>
-          <Panel ref='preview' overflowY>
-            <Preview value={html} />
-          </Panel>
-        </SplitPane>
+          </Panel>         
       </section>
     )
   }

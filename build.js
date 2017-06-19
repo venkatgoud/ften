@@ -369,7 +369,7 @@ function buildWin32 (cb) {
         authors: 'Alessandro Arnodo',
         description: pkg.productName,
         exe: pkg.productName + '.exe',
-        iconUrl: 'https://github.com/vesparny/marky/tree/master/assets/icon.ico',
+        // iconUrl: 'https://github.com/venkatgoud/tree/master/assets/icon.ico',
         // loadingGif: path.join(config.STATIC_PATH, 'loading.gif'),
         name: pkg.productName,
         noMsi: true,

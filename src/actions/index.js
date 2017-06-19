@@ -1,11 +1,9 @@
 import * as types from '../constants/actionTypes'
-import parser from '../parser'
-
+ 
 function updateMarkdown (markdown = '') {
   return {
     type: types.MARKDOWN_CHANGED,
-    payload: {
-      html: parser.render(markdown),
+    payload: {       
       markdown
     }
   }
