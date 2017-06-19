@@ -1,9 +1,9 @@
 import React from 'react'
-import { Toolbar, Space, Heading, NavItem } from 'rebass'
+import { Toolbar, Space, Heading, NavItem, Switch, Label } from 'rebass'
 import Icon from 'react-geomicons'
 import * as colors from '../constants/colors'
 
-const Header = ({fileName}) => (
+const Header = ({fileName, indian}) => (
   <div>
     <Toolbar style={{
       backgroundColor: colors.GRAY
@@ -17,7 +17,10 @@ const Header = ({fileName}) => (
       color: colors.GRAY
     }}>
       <span>{fileName || 'Untitled Screenplay'}</span>       
-      <Space />
+      <Space auto={true}
+      x={1}/>       
+      <Label>Indian</Label>
+      <Switch checked={indian} onClick={()=>{}}/>
     </Toolbar>
   </div>
 

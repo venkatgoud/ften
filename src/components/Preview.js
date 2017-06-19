@@ -10,10 +10,11 @@ const Preview = React.createClass({
     return newProps.value !== this.props.value
   },
 
-  render () {    
+  render () {
+    let defaultId = "indian-script"    
     return (
       <section id="workspace" style={{display: 'block'}}>
-        <div id="script" className="us-letter dpi100">
+        <div id={defaultId} className="us-letter dpi100">
             <div className="page" dangerouslySetInnerHTML={{__html: this.props.value}} />
         </div>
       </section>

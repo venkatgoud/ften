@@ -14,7 +14,8 @@ const App = React.createClass({
     isScrolling: PropTypes.bool,
     markdown: PropTypes.string,
     html: PropTypes.string,
-    showPreview: PropTypes.bool
+    showPreview: PropTypes.bool,
+    indian : PropTypes.bool
   },
 
   componentDidMount () {
@@ -67,7 +68,7 @@ const App = React.createClass({
   },
 
   render () {
-    const {markdown, html, fileName, showPreview} = this.props
+    const {markdown, html, fileName, showPreview, indian} = this.props
 
     let editorPanel = <Panel ref='editor'>
             <Editor value={markdown} onChange={this.onChange} />
@@ -85,7 +86,7 @@ const App = React.createClass({
                  
     return (
       <section>
-        <Header fileName={fileName} />
+        <Header fileName={fileName} indian={this.props.indian} />
           {panel}
       </section>
     )
