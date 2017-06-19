@@ -2,7 +2,6 @@ import React from 'react'
 import { Toolbar, Space, Heading, NavItem } from 'rebass'
 import Icon from 'react-geomicons'
 import * as colors from '../constants/colors'
-import {createIndianPreview, createHollywoodPreview} from '../main/createPreview'
 
 const Header = ({fileName}) => (
   <div>

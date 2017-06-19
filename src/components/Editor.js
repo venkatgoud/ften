@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import ReactDom from 'react-dom'
 import ace from 'brace'
-import 'brace/mode/markdown'
-import 'brace/theme/github'
+import '../mode/fountain.js'
+import 'brace/theme/solarized_dark'
 import 'brace/ext/searchbox'
 import { noop } from 'lodash'
 
@@ -22,9 +22,9 @@ const Editor = React.createClass({
   componentDidMount () {
     this.editor = ace.edit(ReactDom.findDOMNode(this))
     this.editor.$blockScrolling = Infinity
-    this.editor.getSession().setMode('ace/mode/markdown')
+    this.editor.getSession().setMode('ace/mode/fountain')
     this.editor.getSession().setUseWrapMode(true)
-    this.editor.setTheme('ace/theme/github')
+    this.editor.setTheme('ace/theme/solarized_dark')
     this.editor.setFontSize(14)
     this.editor.on('change', this.onChange)
     this.editor.setValue(this.props.value, -1)
@@ -48,8 +48,8 @@ const Editor = React.createClass({
     clearInterval(this.interval)
   },
 
-  onChange () {
-    this.props.onChange(this.editor.getValue())
+  onChange (delta) {
+    this.props.onChange(this.editor.getValue(delta)) 
   },
 
   render () {

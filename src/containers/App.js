@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {debounce} from 'lodash'
 import {convertMarkdown, toggleScrolling} from '../actions'
 import Editor from '../components/Editor' 
+import Preview from '../components/Preview'
 import Panel from '../components/Panel'
 import Header from '../components/Header'
 
@@ -12,7 +13,8 @@ const App = React.createClass({
   propTypes: {
     isScrolling: PropTypes.bool,
     markdown: PropTypes.string,
-    html: PropTypes.string
+    html: PropTypes.string,
+    showPreview: PropTypes.bool
   },
 
   componentDidMount () {
@@ -44,11 +46,13 @@ const App = React.createClass({
   },
 
   bindEvents () {
-    ReactDom.findDOMNode(this.refs.editor).addEventListener('scroll', this.onEditorScroll)     
+    if (this.refs.editor)
+      ReactDom.findDOMNode(this.refs.editor).addEventListener('scroll', this.onEditorScroll)     
   },
 
   unbindEvents () {
-    ReactDom.findDOMNode(this.refs.editor).removeEventListener('scroll', this.onEditorScroll)     
+    if (this.refs.editor)
+      ReactDom.findDOMNode(this.refs.editor).removeEventListener('scroll', this.onEditorScroll)     
   },
 
   onChange (value) {
@@ -65,13 +69,26 @@ const App = React.createClass({
   },
 
   render () {
-    const {markdown, html, fileName} = this.props
+    const {markdown, html, fileName, showPreview} = this.props
+
+    let editorPanel = <Panel ref='editor'>
+            <Editor value={markdown} onChange={this.onChange} />
+        </Panel>
+
+    let previewPanel = <Panel ref='preview'>
+            <Preview value={html}/>
+        </Panel>
+    
+    let panel = editorPanel
+
+    if (this.props.showPreview) {
+      panel = previewPanel
+    }
+                 
     return (
       <section>
         <Header fileName={fileName} />
-        <Panel ref='editor'>
-            <Editor value={markdown} onChange={this.onChange} />
-          </Panel>         
+          {panel}
       </section>
     )
   }

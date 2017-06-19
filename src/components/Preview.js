@@ -12,9 +12,11 @@ const Preview = React.createClass({
 
   render () {
     return (
-      <div style={{padding: '0 15px'}}>
-        <div dangerouslySetInnerHTML={{__html: this.props.value}} />
-      </div>
+      <section id="workspace" style={{display: 'block'}}>
+        <div id="script" className="us-letter dpi100">
+            <div className="page" dangerouslySetInnerHTML={{__html: this.props.value}} />
+        </div>
+      </section>
     )
   }
 })
