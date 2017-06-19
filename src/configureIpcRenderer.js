@@ -30,13 +30,11 @@ export default function configureIpcRenderer (store) {
   })
 
   ipcRenderer.on('FTEN::preview-indian', (e) => {     
-    store.dispatch(actions.previewIndian())   
-    // ipcRenderer.send('FTEN::preview-indian')
+    store.dispatch(actions.previewIndian())        
   })
 
   ipcRenderer.on('FTEN::preview-hollywood', (e) => {  
-    store.dispatch(actions.previewHollywood())   
-    // ipcRenderer.send('FTEN::preview-hollywood')      
+    store.dispatch(actions.previewHollywood())           
   })
    
   window.document.addEventListener('drop', (e) => {

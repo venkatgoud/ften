@@ -3,7 +3,6 @@ import file from './menus/file'
 import help from './menus/help'
 import ften from './menus/ften'
 import view from './menus/view'
-import preview from './menus/preview'
 import windowMenu from './menus/windowMenu'
 
 export default function configureMenu ({app}) {
@@ -15,8 +14,7 @@ export default function configureMenu ({app}) {
     file,
     edit,
     windowMenu,
-    view,
-    preview,
+    view,     
     help
   ]
 }

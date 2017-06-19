@@ -19,22 +19,11 @@ export default function createWindow (filePath, callback) {
     'height': mainWindowState.height
   })
 
-  // var indexPath = process.env.NODE_ENV === 'production'
-  // ? path.resolve(__dirname, 'src/indian.html')
-  // : path.resolve(__dirname, '..', 'indian.html')
-  // console.log ('indian:'+ indexPath)
-
-  // indexPath = process.env.NODE_ENV === 'production'
-  // ? path.resolve(__dirname, 'src/hollywood.html')
-  // : path.resolve(__dirname, '..', 'hollywood.html')
-  // console.log ('hollywood:'+ indexPath)
 
   var indexPath = process.env.NODE_ENV === 'production'
   ? path.resolve(__dirname, 'src/index.html')
   : path.resolve(__dirname, '..', 'index.html')
-
-  // console.log ('index:'+ indexPath)
-  
+    
   mainWindow.showUrl(indexPath, () => {
     if (filePath) {
       fs.readFile(filePath, 'utf-8', (err, file) => {

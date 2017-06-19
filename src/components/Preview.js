@@ -10,7 +10,7 @@ const Preview = React.createClass({
     return newProps.value !== this.props.value
   },
 
-  render () {
+  render () {    
     return (
       <section id="workspace" style={{display: 'block'}}>
         <div id="script" className="us-letter dpi100">

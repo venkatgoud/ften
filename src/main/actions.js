@@ -3,17 +3,7 @@ import fs from 'fs-plus'
 import { extname, basename } from 'path'
 import { EXTENSIONS } from '../constants/globals'
 import createWindow from './createWindow'
-import {createIndianPreview, createHollywoodPreview} from './createPreview'
  
-
-ipcMain.on('FTEN::preview-hollywood', (e) => {
-  createHollywoodPreview()
-})
-
-ipcMain.on('FTEN::preview-indian', (e) => {   
-   createIndianPreview()
-})
-
 ipcMain.on('FTEN::save-file', (e, {data, filePath}) => {
   fs.writeFile(filePath, data, 'utf-8', function (err, file) {
     if (err) return

@@ -1,7 +1,6 @@
 import { app, Menu, dialog, shell } from 'electron'
 import configureMenu from './configureMenu'
-import createWindow from './createWindow'
-import createIndianPreview from './createPreview'
+import createWindow from './createWindow' 
 import window from './windowManager'
 import autoUpdater from './autoUpdater'
 

@@ -1,3 +1,5 @@
+import * as actions from '../actions'
+
 let viewMenu = {
   label: 'View',
   submenu: [{
@@ -9,6 +11,24 @@ let viewMenu = {
       }
     }
   }, {
+    label: 'Indian',
+    accelerator: 'CmdOrCtrl+R',
+    click: function (item, browserWindow) {       
+      actions.previewIndian({browserWindow})   
+    }
+  }, {
+    label: 'Hollywood',
+    accelerator: (function () {
+      if (process.platform === 'darwin') {
+        return 'Ctrl+Command+F'
+      } else {
+        return 'F11'
+      }
+    })(),
+    click: function (item, browserWindow) {
+      actions.previewHollywood({browserWindow})   
+    }
+  },{
     label: 'Toggle Full Screen',
     accelerator: (function () {
       if (process.platform === 'darwin') {
