@@ -78,10 +78,6 @@ export function newFile () {
   createWindow()
 }
 
-export function previewIndian({browserWindow}) {   
-  browserWindow.webContents.send('FTEN::preview-indian')  
-}
-
-export function previewHollywood({browserWindow}) {
-  browserWindow.webContents.send('FTEN::preview-hollywood')  
+export function preview({browserWindow}) {   
+  browserWindow.webContents.send('FTEN::preview')  
 }

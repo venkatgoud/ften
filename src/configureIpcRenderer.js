@@ -29,12 +29,8 @@ export default function configureIpcRenderer (store) {
     })
   })
 
-  ipcRenderer.on('FTEN::preview-indian', (e) => {     
-    store.dispatch(actions.previewIndian())        
-  })
-
-  ipcRenderer.on('FTEN::preview-hollywood', (e) => {  
-    store.dispatch(actions.previewHollywood())           
+  ipcRenderer.on('FTEN::preview', (e) => {     
+    store.dispatch(actions.preview())        
   })
    
   window.document.addEventListener('drop', (e) => {

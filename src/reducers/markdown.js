@@ -30,17 +30,11 @@ export default function markdown(state = initialState, action) {
       return Object.assign({}, state, {
         isScrolling: !state.isScrolling
       })
-    case types.SHOW_PREVIEW_HOLLYWOOD: 
+    case types.TOGGLE_PREVIEW: 
       return Object.assign({}, state, {
         showPreview: !state.showPreview,
         html: fountain.parse(state.markdown).html.script                   
-      })
-    
-    case types.SHOW_PREVIEW_INDIAN:
-      return Object.assign({}, state, {
-        showPreview: !state.showPreview,
-        html: fountain.parse(state.markdown).html.script                  
-      })    
+      })     
     default:
       return state
   }

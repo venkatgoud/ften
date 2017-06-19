@@ -11,22 +11,10 @@ let viewMenu = {
       }
     }
   }, {
-    label: 'Indian',
+    label: 'Toggle Preview',
     accelerator: 'CmdOrCtrl+R',
     click: function (item, browserWindow) {       
-      actions.previewIndian({browserWindow})   
-    }
-  }, {
-    label: 'Hollywood',
-    accelerator: (function () {
-      if (process.platform === 'darwin') {
-        return 'Ctrl+Command+F'
-      } else {
-        return 'F11'
-      }
-    })(),
-    click: function (item, browserWindow) {
-      actions.previewHollywood({browserWindow})   
+      actions.preview({browserWindow})   
     }
   },{
     label: 'Toggle Full Screen',

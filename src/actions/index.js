@@ -29,14 +29,9 @@ export function toggleScrolling () {
   }
 }
 
-export function previewHollywood(){
+export function preview(){
   return {
-    type: types.SHOW_PREVIEW_HOLLYWOOD     
+    type: types.TOGGLE_PREVIEW     
   }
 }
-
-export function previewIndian(){
-  return {
-    type: types.SHOW_PREVIEW_INDIAN     
-  }
-}
+ 
