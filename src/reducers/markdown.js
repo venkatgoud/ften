@@ -33,7 +33,7 @@ export default function markdown(state = initialState, action) {
     case types.TOGGLE_PREVIEW: 
       return Object.assign({}, state, {
         showPreview: !state.showPreview,
-        html: fountain.parse(state.markdown).html.script                   
+        html: !state.showPreview ? fountain.parse(state.markdown).html.script : null                 
       })     
     default:
       return state

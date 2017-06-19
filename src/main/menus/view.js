@@ -12,7 +12,7 @@ let viewMenu = {
     }
   }, {
     label: 'Toggle Preview',
-    accelerator: 'CmdOrCtrl+R',
+    accelerator: 'CmdOrCtrl+P',
     click: function (item, browserWindow) {       
       actions.preview({browserWindow})   
     }

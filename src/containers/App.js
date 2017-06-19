@@ -38,10 +38,8 @@ const App = React.createClass({
   sync (target, scrollingElName) {
     return () => {
       const notScrollingElHandler =  this.onEditorScroll         
-      const percentage = (target.scrollTop * 100) / (target.scrollHeight - target.offsetHeight)
-      other.removeEventListener('scroll', notScrollingElHandler)
-      other.scrollTop = percentage * (other.scrollHeight - other.offsetHeight) / 100
-      setTimeout(() => other.addEventListener('scroll', notScrollingElHandler), 20)
+      const percentage = (target.scrollTop * 100) / (target.scrollHeight - target.offsetHeight)      
+      // setTimeout(() => other.addEventListener('scroll', notScrollingElHandler), 20)
     }
   },
 
