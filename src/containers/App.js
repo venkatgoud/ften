@@ -55,12 +55,12 @@ const App = React.createClass({
   },
 
   onChange (value) {
-    if (this.debouncedChange) {
-      this.debouncedChange(value)
-    } else {
-      this.debouncedChange = debounce(this.props.convertMarkdown, 10)
-      this.debouncedChange(value)
-    }
+    // if (this.debouncedChange) {
+    //   this.debouncedChange(value)
+    // } else {
+    //   this.debouncedChange = debounce(this.props.convertMarkdown, 10)
+    //   this.debouncedChange(value)
+    // }
   },
 
   toggleScrolling () {

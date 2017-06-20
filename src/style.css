@@ -406,3 +406,5 @@ header::-moz-selection, header::selection { background: #454545; color: #fff; }
         margin: 0;
         padding: 0;
     }
+
+    /* Fountain syntax highlighting*/

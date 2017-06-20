@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom'
 import configureStore from './configureStore'
 import Root from './containers/Root'
 import configureIpcRenderer from './configureIpcRenderer'
-
+ 
 const rootElement = document.getElementById('root')
 
 const store = configureStore()
