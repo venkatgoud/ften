@@ -1,9 +1,9 @@
 import * as types from '../constants/actionTypes'
- 
+
 function updateMarkdown (markdown = '') {
   return {
     type: types.MARKDOWN_CHANGED,
-    payload: {       
+    payload: {
       markdown
     }
   }
@@ -29,9 +29,15 @@ export function toggleScrolling () {
   }
 }
 
-export function preview(){
+export function toggleScriptStyle() {
   return {
-    type: types.TOGGLE_PREVIEW     
+    type: types.TOGGLE_SCRIPT_STYLE
   }
 }
- 
+
+export function preview(){
+  return {
+    type: types.TOGGLE_PREVIEW
+  }
+}
+

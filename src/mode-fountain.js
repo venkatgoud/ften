@@ -14,17 +14,20 @@ ace.define("ace/mode/fountain", ["require", "exports", "module", "ace/lib/oop", 
                 token: "fountain.boneyard",
                 regex: /(^\/\*|^\*\/)$/
             }, {
-                token: "fountain.dialogue",
-                regex: /^([A-Z*_]+[0-9A-Z (._\-')]*)(\^?)?(?:\n(?!\n+))([\s\S]+)/
-            }, {
-                token: "fountain.parenthetical",
-                regex: /^(\(.+\))$/
+                token: "fountain.character",
+                regex: /^([A-Z*_]+[0-9A-Z]*)$/,
+                next: "dialogue"
             }, {
                 token: "fountain.transition",
                 regex: /^((?:FADE (?:TO BLACK|OUT)|CUT TO BLACK)\.|.+ TO\:)|^(?:> *)(.+)/,
             }, {
                 token: "fountain.scene_heading",
-                regex: /^((?:\*{0,3}_?)?(?:(?:int|ext|est|i\/e)[. ]).+)|^(?:\.(?!\.+))(.+)/i
+                regex: /^((?:\*{0,3}_?)?(?:(?:int|ext|est|i\/e)[. ]).+)|^(?:\.(?!\.+))(.+)/i,
+                push : [{
+                    token : "text",
+                    regex : "\\s+"
+                }],
+                next: "heading"
             }, {
                 token: "fountain.section",
                 regex: /^(#+)(?: *)(.*)/,
@@ -35,7 +38,30 @@ ace.define("ace/mode/fountain", ["require", "exports", "module", "ace/lib/oop", 
             }, {
                 token: "fountain.action",
                 regex: /^(.+)/
-            }]
+            }],
+            "heading": [{
+                token: "empty_line",
+                regex: '^$',
+                onMatch: function(val, state, stack, line) {
+                    console.log("value " + val)         
+                    console.log("state " + state)         
+                    console.log("stack " + stack)
+                    stack.push("heading")      
+                    console.log("line " + line)      
+                },
+                next: "start"
+            }],
+            "dialogue": [{
+                token: "fountain.parenthetical",
+                regex: /^(\(.+\))$/
+            },
+            {
+                token: "fountain.dialogue",
+                regex: /^(.+)/,
+                next: "start"
+            }
+            ]
+
         };
     }
     oop.inherits(FountainHighlightRules, TextHighlightRules);

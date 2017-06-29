@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react'
 import ReactDom from 'react-dom'
 import {connect} from 'react-redux'
 import {debounce} from 'lodash'
-import {convertMarkdown, toggleScrolling} from '../actions'
-import Editor from '../components/Editor' 
+import {convertMarkdown, toggleScrolling, toggleScriptStyle} from '../actions'
+import Editor from '../components/Editor'
 import Preview from '../components/Preview'
 import Panel from '../components/Panel'
 import Header from '../components/Header'
@@ -19,8 +19,8 @@ const App = React.createClass({
   },
 
   componentDidMount () {
-    const editor = ReactDom.findDOMNode(this.refs.editor)     
-    this.onEditorScroll = this.sync(editor, 'editor')     
+    const editor = ReactDom.findDOMNode(this.refs.editor)
+    this.onEditorScroll = this.sync(editor, 'editor')
 
     if (this.props.isScrolling) {
       this.bindEvents()
@@ -38,29 +38,33 @@ const App = React.createClass({
 
   sync (target, scrollingElName) {
     return () => {
-      const notScrollingElHandler =  this.onEditorScroll         
-      const percentage = (target.scrollTop * 100) / (target.scrollHeight - target.offsetHeight)      
+      const notScrollingElHandler =  this.onEditorScroll
+      const percentage = (target.scrollTop * 100) / (target.scrollHeight - target.offsetHeight)
       // setTimeout(() => other.addEventListener('scroll', notScrollingElHandler), 20)
     }
   },
 
   bindEvents () {
     if (this.refs.editor)
-      ReactDom.findDOMNode(this.refs.editor).addEventListener('scroll', this.onEditorScroll)     
+      ReactDom.findDOMNode(this.refs.editor).addEventListener('scroll', this.onEditorScroll)
   },
 
   unbindEvents () {
     if (this.refs.editor)
-      ReactDom.findDOMNode(this.refs.editor).removeEventListener('scroll', this.onEditorScroll)     
+      ReactDom.findDOMNode(this.refs.editor).removeEventListener('scroll', this.onEditorScroll)
   },
 
   onChange (value) {
-    // if (this.debouncedChange) {
-    //   this.debouncedChange(value)
-    // } else {
-    //   this.debouncedChange = debounce(this.props.convertMarkdown, 10)
-    //   this.debouncedChange(value)
-    // }
+    if (this.debouncedChange) {
+      this.debouncedChange(value)
+    } else {
+      this.debouncedChange = debounce(this.props.convertMarkdown, 10)
+      this.debouncedChange(value)
+    }
+  },
+
+  onScriptStyleChange(){
+    this.props.toggleScriptStyle()
   },
 
   toggleScrolling () {
@@ -77,27 +81,28 @@ const App = React.createClass({
     let previewPanel = <Panel ref='preview'>
             <Preview value={html}/>
         </Panel>
-    
+
     let panel = editorPanel
 
     if (this.props.showPreview) {
       panel = previewPanel
     }
-                 
+
     return (
       <section>
-        <Header fileName={fileName} indian={this.props.indian} />
+        <Header fileName={fileName} indian={this.props.indian} onChange={this.onScriptStyleChange}/>
           {panel}
       </section>
     )
   }
 })
 
-function mapStateToProps ({markdown}) {
+function mapStateToProps ({markdown, indian}) {
   return markdown
 }
 
 export default connect(mapStateToProps, {
   convertMarkdown,
-  toggleScrolling
+  toggleScrolling,
+  toggleScriptStyle
 })(App)

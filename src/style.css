@@ -407,4 +407,5 @@ header::-moz-selection, header::selection { background: #454545; color: #fff; }
         padding: 0;
     }
 
-    /* Fountain syntax highlighting*/
+    /* Fountain syntax highlighting for ace*/
+    

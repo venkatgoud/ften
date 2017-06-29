@@ -3,12 +3,12 @@ import { Toolbar, Space, Heading, NavItem, Switch, Label } from 'rebass'
 import Icon from 'react-geomicons'
 import * as colors from '../constants/colors'
 
-const Header = ({fileName, indian}) => (
+const Header = ({fileName, indian, onChange}) => (
   <div>
     <Toolbar style={{
       backgroundColor: colors.GRAY
     }}>
-      <Heading level={3}>FTEN</Heading>       
+      <Heading level={3}>FTEN</Heading>
     </Toolbar>
     <Toolbar style={{
       backgroundColor: colors.LIGHT_GRAY,
@@ -16,14 +16,13 @@ const Header = ({fileName, indian}) => (
       minHeight: '40px',
       color: colors.GRAY
     }}>
-      <span>{fileName || 'Untitled Screenplay'}</span>       
+      <span>{fileName || 'Untitled Screenplay'}</span>
       <Space auto={true}
-      x={1}/>       
+      x={1}/>
       <Label>Indian</Label>
-      <Switch checked={indian} onClick={()=>{}}/>
+      <Switch checked={indian} onClick={onChange}/>
     </Toolbar>
   </div>
-
 )
 
 export default Header
